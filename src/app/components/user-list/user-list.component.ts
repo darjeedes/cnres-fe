@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {AmplifyAuthenticator} from '@aws-amplify/ui-angular';
 
 @Component({
   selector: 'app-user-list',
@@ -9,6 +10,8 @@ import {HttpClient} from '@angular/common/http';
 export class UserListComponent implements OnInit {
 
   public users: string[] = null;
+
+  public loggedIn = AmplifyAuthenticator;
 
   constructor(private http: HttpClient) {
   }

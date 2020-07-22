@@ -6,6 +6,14 @@ import {AppComponent} from './app.component';
 import {UserListComponent} from './components/user-list/user-list.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 
+import {AmplifyUIAngularModule} from '@aws-amplify/ui-angular';
+// import Amplify from 'aws-amplify';
+// import awsconfig from './aws-exports';
+
+/* Configure Amplify resources */
+
+// Amplify.configure(awsconfig);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +22,8 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AmplifyUIAngularModule
   ],
   providers: [],
   bootstrap: [AppComponent]

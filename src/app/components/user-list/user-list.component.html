@@ -1,7 +1,7 @@
-<p>user-list works!</p>
+<h1>Users</h1>
 
 <ng-container *ngIf="users">
-  <div *ngFor="let user of users">
-    {{user}}
-  </div>
+  <ul *ngFor="let user of users">
+    <li>{{user}}</li>
+  </ul>
 </ng-container>
