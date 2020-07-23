@@ -4,6 +4,9 @@
   </amplify-authenticator>
 </div>
 
+<hr>
+
 <div class="container">
-  <app-user-list></app-user-list>
+  <button (click)="onRefreshClick()">Refresh</button>
+  <app-user-list *ngIf="authService.isAuthenticated()"></app-user-list>
 </div>

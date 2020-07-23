@@ -5,7 +5,8 @@ import Amplify, {Auth} from 'aws-amplify';
   providedIn: 'root'
 })
 export class AuthService {
-  private token: any;
+
+  private authenticated: boolean = false;
 
   constructor() {
 
@@ -71,15 +72,9 @@ export class AuthService {
           },
           {
             name: 'user-api-rest',
-            endpoint: 'https://uxkhqt800h.execute-api.eu-central-1.amazonaws.com',
+            endpoint: 'https://uxkhqt800h.execute-api.eu-central-1.amazonaws.com/stage-01',
             custom_header: async () => {
-              // return { Authorization : 'token' }
-              // Alternatively, with Cognito User Pools use this:
-              // this.token = `${(await Auth.currentSession()).getAccessToken().getJwtToken()}`;
-              // return this.token;
               return {Authorization: `Bearer ${(await Auth.currentSession()).getAccessToken().getJwtToken()}`};
-              // return { Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}` }
-              // return { Authorization: "asf"}
             }
           }
         ]
@@ -88,7 +83,12 @@ export class AuthService {
 
   }
 
-  getToken() {
-    return this.token;
+  isAuthenticated() {
+    return this.authenticated;
   }
+
+  refreshAuthState() {
+    Auth.currentUserPoolUser().then(() => this.authenticated = true, () => this.authenticated = false);
+  }
+
 }
